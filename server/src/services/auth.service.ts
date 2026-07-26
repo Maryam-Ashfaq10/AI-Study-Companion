@@ -79,3 +79,19 @@ export const loginUser = async ({
     },
   };
 };
+
+export const getCurrentUser = async (userId: number) => {
+  const user = await prisma.user.findUnique({
+    where: {
+      id: userId,
+    },
+    select: {
+      id: true,
+      name: true,
+      email: true,
+      createdAt: true,
+    },
+  });
+
+  return user;
+};

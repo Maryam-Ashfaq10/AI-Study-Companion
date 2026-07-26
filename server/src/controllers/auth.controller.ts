@@ -1,5 +1,5 @@
 import type { Request, Response } from 'express';
-import { registerUser, loginUser } from '../services/auth.service.js';
+import { registerUser, loginUser, getCurrentUser } from '../services/auth.service.js';
 
 export const register = async (
   req: Request,
@@ -39,6 +39,25 @@ export const login = async (
       success: false,
       message:
         error instanceof Error ? error.message : 'Something went wrong',
+    });
+  }
+};
+
+export const me = async (
+  req: any,
+  res: Response
+): Promise<void> => {
+  try {
+    const user = await getCurrentUser(req.user!.id);
+
+    res.json({
+      success: true,
+      data: user,
+    });
+  } catch {
+    res.status(500).json({
+      success: false,
+      message: 'Something went wrong',
     });
   }
 };
