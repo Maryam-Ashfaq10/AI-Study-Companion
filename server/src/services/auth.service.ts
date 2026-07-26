@@ -7,6 +7,10 @@ interface RegisterInput {
   email: string;
   password: string;
 }
+interface LoginInput {
+  email: string;
+  password: string;
+}
 
 export const registerUser = async ({
   name,
@@ -32,6 +36,39 @@ export const registerUser = async ({
       password: hashedPassword,
     },
   });
+
+  return {
+    token: generateToken(user.id),
+    user: {
+      id: user.id,
+      name: user.name,
+      email: user.email,
+    },
+  };
+};
+
+export const loginUser = async ({
+  email,
+  password,
+}: LoginInput) => {
+  const user = await prisma.user.findUnique({
+    where: {
+      email,
+    },
+  });
+
+  if (!user) {
+    throw new Error('Invalid email or password');
+  }
+
+  const passwordMatch = await bcrypt.compare(
+    password,
+    user.password
+  );
+
+  if (!passwordMatch) {
+    throw new Error('Invalid email or password');
+  }
 
   return {
     token: generateToken(user.id),
