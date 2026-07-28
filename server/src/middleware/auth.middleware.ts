@@ -33,6 +33,11 @@ export const protect = async (
       where: {
         id: decoded.id,
       },
+      select: {
+        id: true,
+        name: true,
+        email: true,
+      },
     });
 
     if (!user) {
