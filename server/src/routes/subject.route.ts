@@ -3,19 +3,38 @@ import { Router } from 'express';
 import { protect } from '../middleware/auth.middleware.js';
 import { validate } from '../middleware/validate.middleware.js';
 
-import { create } from '../controllers/subject.controller.js';
+import * as subjectController from '../controllers/subject.controller.js';
 
 import {
-  createSubjectSchema,
+  createSubjectSchema, updateSubjectSchema, subjectIdSchema
 } from '../validations/subject.validation.js';
 
 const router = Router();
+router.use(protect);
 
 router.post(
   '/create',
-  //protect,
   validate(createSubjectSchema),
-  create
+  subjectController.create
 );
 
+router.get('/all', subjectController.getAll);
+
+router.get(
+  '/:id',
+  validate(subjectIdSchema),
+  subjectController.getById
+);
+
+router.put(
+  '/update/:id',
+  validate(updateSubjectSchema),
+  subjectController.update
+);
+
+router.delete(
+  '/del/:id',
+  validate(subjectIdSchema),
+  subjectController.remove
+);
 export default router;
