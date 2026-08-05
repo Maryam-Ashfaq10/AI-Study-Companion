@@ -3,6 +3,7 @@ import cors from 'cors';
 import 'dotenv/config';
 
 import authRoutes from './routes/auth.route.js';
+import subjectRoutes from './routes/subject.route.js';
 
 const app = express();
 
@@ -14,6 +15,7 @@ app.get('/health', (req, res) => {
 });
 
 app.use('/api/auth', authRoutes);
+app.use('/api/subjects', subjectRoutes);
 
 const PORT = Number(process.env.PORT) || 5000;
 
