@@ -6,6 +6,7 @@ import DashboardPage from './features/auth/pages/DashboardPage';
 
 import ProtectedRoute from './routes/ProtectedRoute';
 import PublicRoute from './routes/PublicRoute';
+import AppLayout from './layouts/AppLayout';
 
 const router = createBrowserRouter([
   {
@@ -26,8 +27,13 @@ const router = createBrowserRouter([
     element: <ProtectedRoute />,
     children: [
       {
-        path: '/',
-        element: <DashboardPage />,
+        element: <AppLayout />,
+        children: [
+          {
+            path: '/',
+            element: <DashboardPage />,
+          },
+        ],
       },
     ],
   },
