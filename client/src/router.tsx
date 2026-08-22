@@ -4,6 +4,7 @@ import LoginPage from './features/auth/pages/LoginPage';
 import RegisterPage from './features/auth/pages/RegisterPage';
 import DashboardPage from './features/auth/pages/DashboardPage';
 import SubjectsPage from './features/subjects/pages/SubjectsPage';
+import SubjectDetailsPage from './features/subjects/pages/SubjectDetailsPage';
 
 import ProtectedRoute from './routes/ProtectedRoute';
 import PublicRoute from './routes/PublicRoute';
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
           {
             path: '/subjects',
             element: <SubjectsPage />,
+          },
+          {
+            path: '/subjects/:subjectId',
+            element: <SubjectDetailsPage />,
           },
         ],
       },
