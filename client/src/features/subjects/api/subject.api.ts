@@ -18,7 +18,7 @@ interface SubjectsResponse {
 }
 
 export const getSubjects = async (): Promise<Subject[]> => {
-  const response = await api.get<SubjectsResponse>('/subjects');
+  const response = await api.get<SubjectsResponse>('/subjects/all');
 
   return response.data.data;
 };
@@ -37,7 +37,7 @@ export const createSubject = async (
   payload: CreateSubjectPayload
 ): Promise<Subject> => {
   const response = await api.post<SubjectResponse>(
-    '/subjects',
+    '/subjects/create',
     payload
   );
 
