@@ -24,13 +24,16 @@ export const useUpdateNote = () => {
     }: UpdateNoteVariables) =>
       updateNote(id, payload),
 
-    onSuccess: (_, variables) => {
+    onSuccess: (updatedNote) => {
       queryClient.invalidateQueries({
-        queryKey: ['notes'],
+        queryKey: [
+          'notes',
+          updatedNote.subjectId,
+        ],
       });
 
       queryClient.invalidateQueries({
-        queryKey: ['note', variables.id],
+        queryKey: ['note', updatedNote.id],
       });
 
       queryClient.invalidateQueries({
@@ -40,7 +43,7 @@ export const useUpdateNote = () => {
       queryClient.invalidateQueries({
         queryKey: [
           'subjects',
-          variables.payload.subjectId,
+          updatedNote.subjectId,
         ],
       });
     },
