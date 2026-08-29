@@ -50,7 +50,7 @@ function NoteCard({
           <button
             className="btn btn-primary btn-sm"
             onClick={() =>
-              navigate(`/notes/${note.id}`)
+              navigate(`/subjects/${note.subjectId}/notes/${note.id}`)
             }
           >
             View

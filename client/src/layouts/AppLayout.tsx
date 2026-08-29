@@ -57,20 +57,7 @@ function AppLayout() {
           >
             Notes
           </NavLink>
-
-          <NavLink
-            to="/flashcards"
-            className="nav-link text-white"
-          >
-            Flashcards
-          </NavLink>
-
-          <NavLink
-            to="/quizzes"
-            className="nav-link text-white"
-          >
-            Quizzes
-          </NavLink>
+         
 
           <NavLink
             to="/ai"

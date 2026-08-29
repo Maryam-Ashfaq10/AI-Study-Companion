@@ -5,6 +5,7 @@ import RegisterPage from './features/auth/pages/RegisterPage';
 import DashboardPage from './features/auth/pages/DashboardPage';
 import SubjectsPage from './features/subjects/pages/SubjectsPage';
 import SubjectDetailsPage from './features/subjects/pages/SubjectDetailsPage';
+import NoteDetailsPage from './features/notes/pages/NoteDetailsPage';
 
 import ProtectedRoute from './routes/ProtectedRoute';
 import PublicRoute from './routes/PublicRoute';
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
           {
             path: '/subjects/:subjectId',
             element: <SubjectDetailsPage />,
+          },
+          {
+            path: '/subjects/:subjectId/notes/:noteId',
+            element: <NoteDetailsPage />,
           },
         ],
       },
